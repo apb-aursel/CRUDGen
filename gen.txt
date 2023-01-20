@@ -1,0 +1,1 @@
+dotnet aspnet-codegenerator controller --controllerName ExpRelController --restWithNoViews --model ARQ_EXPEDIENTRELACIONAT --dataContext DbCtx --relativeFolderPath Controllers --useAsyncActions
