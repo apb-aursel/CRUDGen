@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace CRUDGen.Models
 {
@@ -7,10 +8,8 @@ namespace CRUDGen.Models
     {
         public ARQ_EXPEDIENT()
         {
-            ARQ_EXPEDIENTRELACIONATARQ_EXPEDIENT_NINavigation = new HashSet<ARQ_EXPEDIENTRELACIONAT>();
-            ARQ_EXPEDIENTRELACIONATNOMINTERNNavigation = new HashSet<ARQ_EXPEDIENTRELACIONAT>();
         }
-
+        [Key]
         public int ARQ_EXPEDIENT_ID { get; set; }
         public string ARQ_USUARI_NI { get; set; } = null!;
         public string ARQ_EXPEDIENTESTAT_NI { get; set; } = null!;
@@ -28,7 +27,5 @@ namespace CRUDGen.Models
         public string ARQ_EXPEDIENTTIPUS_NI { get; set; } = null!;
         public string CONCURRENCYGUID { get; set; } = null!;
 
-        public virtual ICollection<ARQ_EXPEDIENTRELACIONAT> ARQ_EXPEDIENTRELACIONATARQ_EXPEDIENT_NINavigation { get; set; }
-        public virtual ICollection<ARQ_EXPEDIENTRELACIONAT> ARQ_EXPEDIENTRELACIONATNOMINTERNNavigation { get; set; }
     }
 }

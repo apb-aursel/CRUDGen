@@ -3,7 +3,16 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33205.214
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CRUDGen", "CRUDGen.csproj", "{C8AE4A4E-37B3-42F4-8D89-7323AF57C40F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CRUDGen", "API\CRUDGen.csproj", "{C8AE4A4E-37B3-42F4-8D89-7323AF57C40F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{42AD3B1C-F470-4182-8031-4219FE2A56F5}"
+	ProjectSection(SolutionItems) = preProject
+		gen.txt = gen.txt
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "API", "API", "{5383F1AF-D4D8-4DE2-9284-DD9E4240C654}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "dockersetup", "dockersetup", "{A3B5A6E1-D228-40EA-9F7C-A12BBFA963FC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -18,6 +27,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C8AE4A4E-37B3-42F4-8D89-7323AF57C40F} = {5383F1AF-D4D8-4DE2-9284-DD9E4240C654}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {64A71924-85C2-4536-8D12-1DD77AFDA903}
