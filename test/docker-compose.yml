@@ -1,0 +1,30 @@
+version: '3.4'
+
+services:
+  mssql:
+    image: "mcr.microsoft.com/azure-sql-edge:latest"
+    environment:
+      - "ACCEPT_EULA=Y"
+      - "SA_PASSWORD=DemoInetumParaArqApb12!"
+    ports:
+      - "1433:1433"
+    healthcheck:
+      test: /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P "$${SA_PASSWORD}" -Q "SELECT 1" -b -o /dev/null
+      interval: 10s
+      timeout: 3s
+      retries: 10
+      start_period: 10s
+  crudgen:
+    image: "docker.io/andrewu/crudgen1:latest"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=https://+:443;http://+:80
+    ports:
+      - "80"
+      - "5555:443"
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+    depends_on:
+      mssql:
+        condition: service_healthy
