@@ -1,4 +1,5 @@
 using CRUDGen.Models;
+using CRUDGen.Profiles;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
@@ -16,6 +17,7 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddAutoMapper(typeof(ARQDemo_InetumProfile));
 
 var app = builder.Build();
 using (var scope = app.Services.CreateScope())

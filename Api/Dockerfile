@@ -6,6 +6,7 @@ EXPOSE 80
 EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
+RUN dotnet dev-certs https
 WORKDIR /src
 COPY ["Api/CRUDGen.csproj", "Api/"]
 RUN dotnet restore "Api/CRUDGen.csproj"
@@ -21,5 +22,6 @@ HEALTHCHECK --interval=10s --timeout=3s --start-period=10s --retries=10 \
 
 FROM base AS final
 WORKDIR /app
+COPY --from=publish /root/.dotnet/corefx/cryptography/x509stores/my/* /root/.dotnet/corefx/cryptography/x509stores/my/
 COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "CRUDGen.dll"]

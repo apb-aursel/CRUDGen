@@ -16,7 +16,7 @@ namespace CRUDGen.Models
         {
         }
 
-        public virtual DbSet<ARQ_EXPEDIENT> ARQ_EXPEDIENT { get; set; } = null!;
-        public virtual DbSet<ARQ_EXPEDIENT_I> ARQ_EXPEDIENT_I { get; set; } = null!;
+        public virtual DbSet<ARQDemo_Inetum> ARQDemo_Inetum { get; set; } = null!;
+        public virtual DbSet<ARQDemo_Inetum_Idioma> ARQDemo_Inetum_Idioma { get; set; } = null!;
     }
 }
