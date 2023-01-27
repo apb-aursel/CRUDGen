@@ -10,6 +10,7 @@ using System.IO.Pipelines;
 using System.Linq;
 using System.Net.Mime;
 using System.Reflection;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace CRUDGen.Controllers
 {
@@ -81,11 +82,22 @@ namespace CRUDGen.Controllers
         [HttpGet(Name = "GetDataCrud")]
         public ActionResult<TEntityDto> GetDataCrud()
         {
-            IQueryable<TEntity> query = _dbSet;
-            string idiomEntity = $"{typeof(TEntity).Name}_Idioma";
-            query = query.Include(idiomEntity);
+            try
+            {
+                IQueryable<TEntity> query = _dbSet;
+                string idiomEntity = $"{typeof(TEntity).Name}_Idioma";
+                query = query.Include(idiomEntity);
 
-            return Ok(query.ToList());
+                return Ok(query.ToList());
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.InnerException);
+                return Ok();
+            }
+
         }
 
 
