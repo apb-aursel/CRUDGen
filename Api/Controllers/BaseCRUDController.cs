@@ -1,16 +1,12 @@
 ﻿using AutoMapper;
 using CRUDGen.Extensions;
 using CRUDGen.Models;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
-using System.IO.Pipelines;
 using System.Linq;
 using System.Net.Mime;
-using System.Reflection;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace CRUDGen.Controllers
 {
@@ -56,7 +52,7 @@ namespace CRUDGen.Controllers
             var expr = TypeExtension.GetExpresion<TEntity>(id, _primaryKeyName);
             var res = _dbSet.Where(expr).FirstOrDefault();
 
-            if(res == null)
+            if (res == null)
                 return NotFound();
 
             _dbCtx.Remove(res);
@@ -72,7 +68,7 @@ namespace CRUDGen.Controllers
             query = _isIdiomEntity ? query.Include($"{typeof(TEntity).Name}_Idioma") : query;
             var res = query.FirstOrDefault();
 
-            if(res == null)
+            if (res == null)
                 return NotFound();
             else
                 return Ok(_mapper.Map<TEntityDto>(res));
@@ -84,6 +80,8 @@ namespace CRUDGen.Controllers
         {
             try
             {
+                Console.WriteLine("inside GetDataCrud");
+
                 IQueryable<TEntity> query = _dbSet;
                 string idiomEntity = $"{typeof(TEntity).Name}_Idioma";
                 query = query.Include(idiomEntity);
@@ -101,6 +99,8 @@ namespace CRUDGen.Controllers
         }
 
 
+        [Consumes("application/json-patch+json")]
+        [Produces(MediaTypeNames.Application.Json)]
         [HttpPatch("{id}", Name = "UpdateDoc")]
         public ActionResult<TEntityDto> UpdateCrud([FromRoute] int id, [FromBody] JsonPatchDocument patchDoc)
         {
@@ -109,7 +109,7 @@ namespace CRUDGen.Controllers
             query = _isIdiomEntity ? query.Include($"{typeof(TEntity).Name}_Idioma") : query;
             var res = query.FirstOrDefault();
 
-            if(res == null)
+            if (res == null)
                 return NotFound();
 
             patchDoc.ApplyTo(res);

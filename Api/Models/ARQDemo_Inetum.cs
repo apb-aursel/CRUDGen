@@ -16,6 +16,7 @@ namespace CRUDGen.Models
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int ARQ_Id { get; set; }
 
+        [Required]
         public List<ARQDemo_Inetum_Idioma> ARQDemo_Inetum_Idioma { get; set; }
 
     }

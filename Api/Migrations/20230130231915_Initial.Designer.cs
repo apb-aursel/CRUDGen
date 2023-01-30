@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CRUDGen.Migrations
 {
     [DbContext(typeof(DbCtx))]
-    [Migration("20230125114142_Inicial")]
-    partial class Inicial
+    [Migration("20230130231915_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -61,7 +61,8 @@ namespace CRUDGen.Migrations
                 {
                     b.HasOne("CRUDGen.Models.ARQDemo_Inetum", null)
                         .WithMany("ARQDemo_Inetum_Idioma")
-                        .HasForeignKey("ARQDemo_InetumARQ_Id");
+                        .HasForeignKey("ARQDemo_InetumARQ_Id")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("CRUDGen.Models.ARQDemo_Inetum", b =>

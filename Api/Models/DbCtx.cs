@@ -18,5 +18,15 @@ namespace CRUDGen.Models
 
         public virtual DbSet<ARQDemo_Inetum> ARQDemo_Inetum { get; set; } = null!;
         public virtual DbSet<ARQDemo_Inetum_Idioma> ARQDemo_Inetum_Idioma { get; set; } = null!;
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            foreach (var relationship in modelBuilder.Model.GetEntityTypes().SelectMany(e => e.GetForeignKeys()))
+            {
+                relationship.DeleteBehavior = DeleteBehavior.Cascade;
+            }
+        }
     }
 }

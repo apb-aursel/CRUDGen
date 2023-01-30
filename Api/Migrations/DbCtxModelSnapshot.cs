@@ -59,7 +59,8 @@ namespace CRUDGen.Migrations
                 {
                     b.HasOne("CRUDGen.Models.ARQDemo_Inetum", null)
                         .WithMany("ARQDemo_Inetum_Idioma")
-                        .HasForeignKey("ARQDemo_InetumARQ_Id");
+                        .HasForeignKey("ARQDemo_InetumARQ_Id")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("CRUDGen.Models.ARQDemo_Inetum", b =>

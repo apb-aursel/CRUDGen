@@ -4,7 +4,7 @@
 
 namespace CRUDGen.Migrations
 {
-    public partial class Inicial : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -35,7 +35,8 @@ namespace CRUDGen.Migrations
                         name: "FK_ARQDemo_Inetum_Idioma_ARQDemo_Inetum_ARQDemo_InetumARQ_Id",
                         column: x => x.ARQDemo_InetumARQ_Id,
                         principalTable: "ARQDemo_Inetum",
-                        principalColumn: "ARQ_Id");
+                        principalColumn: "ARQ_Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
